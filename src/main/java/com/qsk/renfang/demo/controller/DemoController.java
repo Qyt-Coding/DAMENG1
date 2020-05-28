@@ -1,7 +1,9 @@
 package com.qsk.renfang.demo.controller;
 
 import com.qsk.renfang.demo.demain.Order;
+import com.qsk.renfang.demo.demain.User;
 import com.qsk.renfang.demo.service.OrderService;
+import com.qsk.renfang.demo.service.UserService;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +27,19 @@ public class DemoController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("list")
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/list")
     public List<Order> getList(){
         return orderService.list();
+    }
+
+
+
+    @GetMapping("/list1")
+    public List<User> getList1(){
+        return userService.list();
     }
 
 

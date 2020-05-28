@@ -1,0 +1,71 @@
+#app
+server:
+  port: 8080
+
+#spring:
+#  application:
+#    name: DAMENG
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/aidijing-2?useSSL=false&characterEncoding=UTF-8
+#    username: root
+#    password: 123456
+
+spring:
+  datasource:
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: true #设置严格模式,默认false不启动. 启动后在未匹配到指定数据源时候回抛出异常,不启动会使用默认数据源.
+      datasource:
+        master:
+          url: jdbc:mysql://127.0.0.1:3306/aidijing-2?useSSL=false&characterEncoding=UTF-8
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.jdbc.Driver
+        slave_1:
+          url: jdbc:mysql://127.0.0.1:3306/aidijing-1?useSSL=false&characterEncoding=UTF-8
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.jdbc.Driver
+
+        #......省略
+        #以上会配置一个默认库master，一个组slave下有两个子库slave_1,slave_2
+
+
+
+
+##mybatis
+#mybatis-plus:
+#  # xml
+#  mapper-locations: classpath:mapper/*Mapper.xml
+#  # 实体扫描，多个package用逗号或者分号分隔
+#  type-aliases-package: com.fengwenyi.mybatis_plus_example.model
+#  # 扫描枚举类 # 支持统配符 * 或者 ; 分割
+#  type-enums-package: com.fengwenyi.mybatis_plus_example.enums
+#  global-config:
+#    #刷新mapper 调试神器
+#    db-config:
+#      #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+#      id-type: ID_WORKER
+#      #字段策略 0:"忽略判断",1:"非 NULL 判断"),2:"非空判断"
+#      field-strategy: NOT_EMPTY
+#      #驼峰下划线转换
+#      #column-underline: true
+#      #数据库大写下划线转换
+#      #capital-mode: true
+#      #逻辑删除配置
+#      logic-delete-value: 1
+#      logic-not-delete-value: 0
+#      db-type: mysql
+#    refresh: true
+#      #自定义填充策略接口实现
+#      #meta-object-handler: com.baomidou.springboot.xxx
+#      #自定义SQL注入器
+#    #sql-injector: com.baomidou.springboot.xxx
+#  configuration:
+#    map-underscore-to-camel-case: true
+#    cache-enabled: false
+#
+#logback:
+#  appName: mybatis-plus-example
+#  fileType: log
